@@ -13,6 +13,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="dmit2015-1213-javase-demo" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.eclipse:yasson:2.0.4" />
+          <element id="library" level="project" name="Maven: jakarta.json.bind:jakarta.json.bind-api:2.0.0" />
+          <element id="library" level="project" name="Maven: jakarta.json:jakarta.json-api:2.0.0" />
+          <element id="library" level="project" name="Maven: org.glassfish:jakarta.json:module:2.0.0" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/dmit2015-1213-javase-demo-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
