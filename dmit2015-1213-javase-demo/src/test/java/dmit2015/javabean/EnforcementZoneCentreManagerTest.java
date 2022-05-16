@@ -54,7 +54,7 @@ class EnforcementZoneCentreManagerTest {
     @Test
     void findBySiteID() {
         // There should be result with a SiteID of 7117
-        Optional<EnforcementZoneCentre> optionalEnforcementZoneCentre = currentEnforcementZoneCentreManager.findBySiteID((short) 7117);
+        Optional<EnforcementZoneCentre> optionalEnforcementZoneCentre = currentEnforcementZoneCentreManager.findBySiteID(7117);
         assertTrue(optionalEnforcementZoneCentre.isPresent());
         // Get the value from the Optional container
         EnforcementZoneCentre currentEnforcementZoneCentre = optionalEnforcementZoneCentre.get();
