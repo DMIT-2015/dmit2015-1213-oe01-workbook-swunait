@@ -39,7 +39,7 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="remote-mssql-dmit2015-jpa-pu" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="remote-mssql-assignment02-jpa-pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <properties>
@@ -48,11 +48,27 @@
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
 
             <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://DMIT-Capstone1.ad.sast.ca;databaseName=DMIT2015_1213_E01_yourNaitUseranme;TrustServerCertificate=true" /> <!-- Replace yourNaitUsername value -->
-            <property name="jakarta.persistence.jdbc.user" value="yourNaitUsername" /> <!-- Replace yourNaitUsername value -->
-            <property name="jakarta.persistence.jdbc.password" value="RemotePassword.YourNaitStudentId" /> <!-- Replace YourNaitStudentId value -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://DMIT-Capstone1.ad.sast.ca;databaseName=DMIT2015_1213_E01_Assignment02DB;TrustServerCertificate=true" /> <!-- Replace yourNaitUsername value -->
+            <property name="jakarta.persistence.jdbc.user" value="swu2015" /> <!-- Replace yourNaitUsername value -->
+            <property name="jakarta.persistence.jdbc.password" value="RemotePassword200012345" /> <!-- Replace YourNaitStudentId value -->
 
         </properties>
     </persistence-unit>
+
+<!--    <persistence-unit name="remote-mssql-dmit2015-jpa-pu" transaction-type="RESOURCE_LOCAL">-->
+<!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+
+<!--        <properties>-->
+<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>-->
+<!--            &lt;!&ndash; database.action: drop-and-create, create, update, none &ndash;&gt;-->
+<!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+
+<!--            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />-->
+<!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://DMIT-Capstone1.ad.sast.ca;databaseName=DMIT2015_1213_E01_Assignment02DB;TrustServerCertificate=true" /> &lt;!&ndash; Replace yourNaitUsername value &ndash;&gt;-->
+<!--            <property name="jakarta.persistence.jdbc.user" value="swu2015" /> &lt;!&ndash; Replace yourNaitUsername value &ndash;&gt;-->
+<!--            <property name="jakarta.persistence.jdbc.password" value="RemotePassword.200012345" /> &lt;!&ndash; Replace YourNaitStudentId value &ndash;&gt;-->
+
+<!--        </properties>-->
+<!--    </persistence-unit>-->
 
 </persistence>
