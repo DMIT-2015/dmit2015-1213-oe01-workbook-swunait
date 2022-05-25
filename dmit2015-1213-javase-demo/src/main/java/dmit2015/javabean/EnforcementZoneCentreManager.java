@@ -2,6 +2,7 @@ package dmit2015.javabean;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -55,9 +56,14 @@ public class EnforcementZoneCentreManager {
     }
 
     public List<EnforcementZoneCentre> findByReason(String partialReason) {
+        var locationDescriptionComparator = Comparator.comparing(EnforcementZoneCentre::getLocationDescription,
+                Comparator.nullsLast(Comparator.naturalOrder()));
+        var reasonCodeComparator = Comparator.comparing(EnforcementZoneCentre::getReasonCodes,
+                Comparator.nullsLast(Comparator.naturalOrder()));
         return enforcementZoneCentres
                 .stream()
                 .filter(item -> item.getReasonCodes().contains(partialReason))
+                .sorted(locationDescriptionComparator.thenComparing(reasonCodeComparator))
                 .toList();
     }
 
