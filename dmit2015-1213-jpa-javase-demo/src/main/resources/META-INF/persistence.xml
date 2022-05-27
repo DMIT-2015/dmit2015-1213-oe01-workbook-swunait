@@ -55,6 +55,34 @@
         </properties>
     </persistence-unit>
 
+    <persistence-unit name="remote-mssql-contoso-jpa-pu" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>contoso.entity.Course</class>
+        <class>contoso.entity.CourseInstructor</class>
+        <class>contoso.entity.Department</class>
+        <class>contoso.entity.OfficeAssignment</class>
+        <class>contoso.entity.OnlineCourse</class>
+        <class>contoso.entity.OnsiteCourse</class>
+        <class>contoso.entity.Person</class>
+        <class>contoso.entity.StudentGrade</class>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+
+            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://DMIT-Capstone1.ad.sast.ca;databaseName=DMIT2015_1213_E01_swu2015;TrustServerCertificate=true" /> <!-- Replace yourNaitUsername value -->
+            <property name="jakarta.persistence.jdbc.user" value="swu2015" /> <!-- Replace yourNaitUsername value -->
+            <property name="jakarta.persistence.jdbc.password" value="RemotePassword200012345" />
+            <property name="hibernate.connection.url"
+                      value="jdbc:sqlserver://DMIT-Capstone1.ad.sast.ca;database=DMIT2015_1213_E01_swu2015"/>
+            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.connection.username" value="swu2015"/>
+            <property name="hibernate.connection.password"
+                      value="RemotePassword200012345"/> <!-- Replace YourNaitStudentId value -->
+
+        </properties>
+    </persistence-unit>
+
 <!--    <persistence-unit name="remote-mssql-dmit2015-jpa-pu" transaction-type="RESOURCE_LOCAL">-->
 <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
 
