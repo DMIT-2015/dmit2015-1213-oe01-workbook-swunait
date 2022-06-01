@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="mssql-dmit2015-jpa-pu" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://localhost;databaseName=DMIT2015_1213_CourseDB;TrustServerCertificate=true" />
+            <property name="jakarta.persistence.jdbc.user" value="user2015" />
+            <property name="jakarta.persistence.jdbc.password" value="Password2015" />
+
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="h2database-jpa-pu" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:app/datasources/h2databaseDS</jta-data-source>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:test;MODE=LEGACY;DB_CLOSE_DELAY=-1" />
+            <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:file:~/jdk/databases/h2/DMIT2015_1213_CourseDB;MODE=LEGACY;" />-->
+            <property name="jakarta.persistence.jdbc.user" value="user2015" />
+            <property name="jakarta.persistence.jdbc.password" value="Password2015" />
+
+            <!-- database.action: drop-and-create, create, update, none -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+        </properties>
+    </persistence-unit>
+
+
+    <!--    <persistence-unit name="hsqldatabase-jpa-pu" transaction-type="JTA">-->
+    <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+
+    <!--        <properties>-->
+    <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
+    <!--            <property name="jakarta.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver" />-->
+    <!--&lt;!&ndash;            <property name="jakarta.persistence.jdbc.url" value="jdbc:hsqldb:mem:dmit2015hsqldb" />&ndash;&gt;-->
+    <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:hsqldb:file:D:/jdk/databases/hsqldb/DMIT2015_1213_CourseDB;shutdown=true" />-->
+    <!--            <property name="jakarta.persistence.jdbc.user" value="user2015" />-->
+    <!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+
+    <!--            &lt;!&ndash; hbm2ddl.auto: none, create-only, drop, create, create-drop, validate, update &ndash;&gt;-->
+    <!--            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+    <!--            <property name="hibernate.hbm2ddl.import_files" value="META-INF/sql/import-data.sql" />-->
+
+    <!--        </properties>-->
+    <!--    </persistence-unit>-->
+
+    <!--    <persistence-unit name="mssql-jpa-pu" transaction-type="JTA">-->
+    <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+
+    <!--        <properties>-->
+    <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>-->
+    <!--            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />-->
+    <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlserver://localhost;databaseName=DMIT2015_1213_CourseDB;TrustServerCertificate=true" />-->
+    <!--            <property name="jakarta.persistence.jdbc.user" value="user2015" />-->
+    <!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+
+    <!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+    <!--            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/sql/import-data.sql"/>-->
+    <!--        </properties>-->
+    <!--    </persistence-unit>-->
+
+    <!--    <persistence-unit name="oracle-jpa-user2015-pu" transaction-type="JTA">-->
+    <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+
+    <!--        <properties>-->
+    <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>-->
+    <!--            <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />-->
+    <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />-->
+    <!--            <property name="jakarta.persistence.jdbc.user" value="user2015" />-->
+    <!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+
+    <!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+    <!--        </properties>-->
+    <!--    </persistence-unit>-->
+
+    <!--    <persistence-unit name="oracle-jpa-hr-pu" transaction-type="JTA">-->
+    <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+
+    <!--        <properties>-->
+    <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>-->
+    <!--            <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />-->
+    <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />-->
+    <!--            <property name="jakarta.persistence.jdbc.user" value="HR" />-->
+    <!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+
+    <!--        </properties>-->
+    <!--    </persistence-unit>-->
+
+    <!--    <persistence-unit name="oracle-jpa-oe-pu" transaction-type="JTA">-->
+    <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+
+    <!--        <properties>-->
+    <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>-->
+    <!--            <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />-->
+    <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/xepdb1" />-->
+    <!--            <property name="jakarta.persistence.jdbc.user" value="OE" />-->
+    <!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+
+    <!--        </properties>-->
+    <!--    </persistence-unit>-->
+
+    <!--    <persistence-unit name="postgresql-jpa-pu" transaction-type="JTA">-->
+    <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+
+    <!--        <properties>-->
+    <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>-->
+    <!--            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />-->
+    <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost/DMIT2015_1213_CourseDB" />-->
+    <!--            <property name="jakarta.persistence.jdbc.user" value="user2015" />-->
+    <!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+
+    <!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+    <!--        </properties>-->
+    <!--    </persistence-unit>-->
+
+    <!--    <persistence-unit name="mysql-jpa-pu" transaction-type="JTA">-->
+    <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+
+    <!--        <properties>-->
+    <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>-->
+
+    <!--&lt;!&ndash;            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />&ndash;&gt;-->
+    <!--&lt;!&ndash;            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost/DMIT2015_1213_CourseDB" />&ndash;&gt;-->
+    <!--&lt;!&ndash;            <property name="jakarta.persistence.jdbc.user" value="user2015" />&ndash;&gt;-->
+    <!--&lt;!&ndash;            <property name="jakarta.persistence.jdbc.password" value="Password2015" />&ndash;&gt;-->
+
+    <!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+    <!--            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/sql/import-data.sql" />-->
+
+    <!--        </properties>-->
+    <!--    </persistence-unit>-->
+
+
+    <!--    <persistence-unit name="mariadb-jpa-pu" transaction-type="JTA">-->
+    <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+    <!--        <jta-data-source>java:app/datasources/mariadbDS</jta-data-source>-->
+
+    <!--        <properties>-->
+    <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>-->
+    <!--            <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver" />-->
+    <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://localhost/DMIT2015_1213_CourseDB" />-->
+    <!--            <property name="jakarta.persistence.jdbc.user" value="user2015" />-->
+    <!--            <property name="jakarta.persistence.jdbc.password" value="Password2015" />-->
+
+    <!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+
+    <!--        </properties>-->
+    <!--    </persistence-unit>-->
+
+</persistence>
