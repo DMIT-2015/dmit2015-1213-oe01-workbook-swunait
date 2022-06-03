@@ -26,6 +26,23 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>11.0.0</version>
+            <classifier>jakarta</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>primeflex</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>4.0-M16</version>
+        </dependency>
+
         <!-- Required for Java SE apps. Not required for Jakarta EE apps. -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -182,6 +199,47 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
+            </plugin>
+
+            <plugin>
+                <!-- https://docs.wildfly.org/bootablejar/#wildfly_jar_dev_mode -->
+                <!-- mvn wildfly-jar:dev-watch -->
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-jar-maven-plugin</artifactId>
+                <version>7.0.2.Final</version>
+                <configuration>
+                    <!--                    <feature-pack-location>wildfly-preview@maven(org.jboss.universe:community-universe)#26.1.1.Final</feature-pack-location>-->
+                    <feature-pack-location>wildfly-preview@maven(org.jboss.universe:community-universe)</feature-pack-location>
+                    <layers>
+                        <!-- https://docs.wildfly.org/26/Bootable_Guide.html#wildfly_layers -->
+                        <layer>jaxrs-server</layer>
+                        <layer>management</layer>
+                        <layer>microprofile-config</layer>
+                        <layer>jsf</layer>
+                    </layers>
+                    <excluded-layers>
+                        <layer>deployment-scanner</layer>
+                    </excluded-layers>
+                    <plugin-options>
+                        <jboss-fork-embedded>true</jboss-fork-embedded>
+                    </plugin-options>
+                    <!-- https://docs.wildfly.org/bootablejar/#wildfly_jar_enabling_debug -->
+                    <jvmArguments>
+                        <!-- https://www.jetbrains.com/help/idea/attaching-to-local-process.html#attach-to-local -->
+                        <!-- To attach a debugger to the running server from IntelliJ IDEA
+                            1. From the main menu, choose `Run | Attach to Process`
+                            2. IntelliJ IDEA will show the list of running local processes. Select the process with the `xxx-bootable.jar` name to attach to.
+                        -->
+                        <arg>-agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n</arg>
+                    </jvmArguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
