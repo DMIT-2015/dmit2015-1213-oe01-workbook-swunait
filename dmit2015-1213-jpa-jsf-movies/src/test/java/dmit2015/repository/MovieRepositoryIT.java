@@ -7,6 +7,8 @@ import common.listener.MovieApplicationStartupListener;
 import dmit2015.entity.Movie;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -20,6 +22,7 @@ import jakarta.inject.Inject;
 import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -34,8 +37,6 @@ public class MovieRepositoryIT {
 
     @Inject
     private MovieRepository _movieRepository;
-
-    static Movie currentMovie;  // the Movie that is currently being added, find, update, or delete
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -59,49 +60,61 @@ public class MovieRepositoryIT {
                 .addAsWebInfResource(EmptyAsset.INSTANCE,"beans.xml");
     }
 
-    @Order(2)
-    @Test
-    void shouldCreate() {
-        currentMovie = new Movie();
-        currentMovie.setGenre("Horror");
-        currentMovie.setPrice(BigDecimal.valueOf(19.99));
-        currentMovie.setRating("NC-17");
-        currentMovie.setTitle("The Return of the Java Master");
-        currentMovie.setReleaseDate(LocalDate.parse("2021-01-21"));
-        _movieRepository.add(currentMovie);
-
-        Optional<Movie> optionalMovie = _movieRepository.findOptionalById(currentMovie.getId());
-        assertTrue(optionalMovie.isPresent());
-        Movie existingMovie = optionalMovie.get();
-        assertNotNull(existingMovie);
-        assertEquals(currentMovie.getTitle(), existingMovie.getTitle());
-        assertEquals(currentMovie.getGenre(), existingMovie.getGenre());
-        assertEquals(currentMovie.getPrice(), existingMovie.getPrice());
-        assertEquals(currentMovie.getRating(), existingMovie.getRating());
-        assertEquals(currentMovie.getReleaseDate(), existingMovie.getReleaseDate());
-    }
-
+    @Transactional(TransactionMode.ROLLBACK)
     @Order(3)
     @Test
-    void shouldFindOne() {
-        final Long movieId = currentMovie.getId();
-        Optional<Movie> optionalMovie = _movieRepository.findOptionalById(movieId);
+    void shouldCreate() {
+        // Arrange
+        Movie newMovie = new Movie();
+        newMovie.setGenre("Horror");
+        newMovie.setPrice(BigDecimal.valueOf(19.99));
+        newMovie.setRating("NC-17");
+        newMovie.setTitle("The Return of the Java Master");
+        newMovie.setReleaseDate(LocalDate.parse("2021-01-21"));
+        // Act
+        _movieRepository.add(newMovie);
+        // Assert
+        Optional<Movie> optionalMovie = _movieRepository.findOptionalById(newMovie.getId());
         assertTrue(optionalMovie.isPresent());
         Movie existingMovie = optionalMovie.get();
         assertNotNull(existingMovie);
-        assertEquals(currentMovie.getTitle(), existingMovie.getTitle());
-        assertEquals(currentMovie.getGenre(), existingMovie.getGenre());
-        assertEquals(currentMovie.getPrice().doubleValue(), existingMovie.getPrice().doubleValue());
-        assertEquals(currentMovie.getRating(), existingMovie.getRating());
-        assertEquals(currentMovie.getReleaseDate(), existingMovie.getReleaseDate());
-        long createdDateTimeDifference = currentMovie.getCreatedDateTime().until(existingMovie.getCreatedDateTime(), ChronoUnit.MINUTES);
+        assertEquals(newMovie.getTitle(), existingMovie.getTitle());
+        assertEquals(newMovie.getGenre(), existingMovie.getGenre());
+        assertEquals(newMovie.getPrice(), existingMovie.getPrice());
+        assertEquals(newMovie.getRating(), existingMovie.getRating());
+        assertEquals(newMovie.getReleaseDate(), existingMovie.getReleaseDate());
+
+        long createdDateTimeDifference = newMovie.getCreatedDateTime().until(LocalDateTime.now(), ChronoUnit.MINUTES);
         assertEquals(0, createdDateTimeDifference);
+
+        assertNull(newMovie.getUpdatedDateTime());
+    }
+
+    @Order(2)
+    @Test
+    void shouldFindOne() {
+        // Arrange
+        final Long editId = 3L;  // for Ghostbusters 2
+        // Act
+        Optional<Movie> optionalMovie = _movieRepository.findOptionalById(editId);
+        // Assert
+        assertTrue(optionalMovie.isPresent());
+        Movie existingMovie = optionalMovie.get();
+        assertNotNull(existingMovie);
+        assertEquals("Comedy", existingMovie.getGenre());
+        assertEquals(9.99, existingMovie.getPrice().doubleValue());
+        assertEquals("PG", existingMovie.getRating());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-dd");
+        assertEquals(LocalDate.parse("1986-2-23", formatter).toString(), existingMovie.getReleaseDate().toString());
+        assertNotNull(existingMovie.getCreatedDateTime());
     }
 
     @Order(1)
     @Test
     void shouldFindAll() {
+        // Arrange and Act
         List<Movie> queryResultList = _movieRepository.findAll();
+        // Assert
         assertEquals(4, queryResultList.size());
 
         Movie firstMovie = queryResultList.get(0);
@@ -118,44 +131,63 @@ public class MovieRepositoryIT {
         assertEquals(7.99, lastMovie.getPrice().doubleValue());
         assertEquals("PG-13", lastMovie.getRating());
         assertEquals(LocalDate.parse("1959-04-15", formatter).toString(), lastMovie.getReleaseDate().toString());
-
-        queryResultList.forEach(System.out::println);
     }
 
     @Order(4)
     @Test
-    void shouldUpdate() {
-        currentMovie.setGenre("Comedy");
-        currentMovie.setTitle("JDK 16 Release ");
-        currentMovie.setRating("PG-13");
-        currentMovie.setPrice(BigDecimal.valueOf(16.99));
-        currentMovie.setReleaseDate(LocalDate.parse("2021-03-16"));
-        _movieRepository.update(currentMovie);
+    void shouldUpdate()  {
+        // Arrange - Create a new Movie then update the same Movie
+        Movie newMovie = new Movie();
+        newMovie.setGenre("Adventure");
+        newMovie.setPrice(BigDecimal.valueOf(29.99));
+        newMovie.setRating("PG");
+        newMovie.setTitle("JDK 17 Release Party");
+        newMovie.setReleaseDate(LocalDate.parse("2021-09-14"));
+        _movieRepository.add(newMovie);
+        final Long editId = newMovie.getId();
+        Optional<Movie> optionalMovie = _movieRepository.findOptionalById(editId);
+        assertTrue(optionalMovie.isPresent());
+        Movie existingMovie = optionalMovie.get();
+        assertNotNull(existingMovie);
+        // Act - change the genre, title, rating, price, and release date
+        existingMovie.setGenre("Action");
+        existingMovie.setTitle("JDK 18 Release Party");
+        existingMovie.setRating("PG-13");
+        existingMovie.setPrice(BigDecimal.valueOf(19.99));
+        existingMovie.setReleaseDate(LocalDate.parse("2022-03-22"));
+        _movieRepository.update(existingMovie);
 
-        Optional<Movie> optionalUpdatedMovie = _movieRepository.findOptionalById(currentMovie.getId());
+        // Assert
+        Optional<Movie> optionalUpdatedMovie = _movieRepository.findOptionalById(existingMovie.getId());
         assertTrue(optionalUpdatedMovie.isPresent());
         Movie updatedMovie = optionalUpdatedMovie.get();
+        System.out.println("Updated movie: "  + updatedMovie);
         assertNotNull(updatedMovie);
-        assertEquals(currentMovie.getTitle(), updatedMovie.getTitle());
-        assertEquals(currentMovie.getGenre(), updatedMovie.getGenre());
-        assertEquals(currentMovie.getPrice().doubleValue(), updatedMovie.getPrice().doubleValue());
-        assertEquals(currentMovie.getRating(), updatedMovie.getRating());
-        assertEquals(currentMovie.getReleaseDate(), updatedMovie.getReleaseDate());
-        long createdDateTimeDifference = currentMovie.getCreatedDateTime().until(updatedMovie.getCreatedDateTime(), ChronoUnit.MINUTES);
-        assertEquals(0, createdDateTimeDifference);
+        assertEquals(existingMovie.getTitle(), updatedMovie.getTitle());
+        assertEquals(existingMovie.getGenre(), updatedMovie.getGenre());
+        assertEquals(existingMovie.getPrice().doubleValue(), updatedMovie.getPrice().doubleValue());
+        assertEquals(existingMovie.getRating(), updatedMovie.getRating());
+        assertEquals(existingMovie.getReleaseDate(), updatedMovie.getReleaseDate());
+
         assertNotNull(updatedMovie.getUpdatedDateTime());
+        long updatedDateTimeDifference = updatedMovie.getUpdatedDateTime().until(LocalDateTime.now(), ChronoUnit.MINUTES);
+        assertEquals(0, updatedDateTimeDifference);
+
     }
 
     @Order(5)
     @Test
     void shouldDelete() {
-        final Long movieId = currentMovie.getId();
-        Optional<Movie> optionalMovie = _movieRepository.findOptionalById(movieId);
+        // Arrange
+        final Long editId = 3L;  // for Ghostbusters 2
+        Optional<Movie> optionalMovie = _movieRepository.findOptionalById(editId);
         assertTrue(optionalMovie.isPresent());
         Movie existingMovie = optionalMovie.get();
         assertNotNull(existingMovie);
+        // Act
         _movieRepository.delete(existingMovie);
-        optionalMovie = _movieRepository.findOptionalById(movieId);
+        optionalMovie = _movieRepository.findOptionalById(editId);
+        // Assert
         assertTrue(optionalMovie.isEmpty());
     }
 }
