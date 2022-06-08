@@ -22,32 +22,32 @@
                 <h:panelGroup>
                     <strong><h:outputText value="ID"/></strong>
                 </h:panelGroup>
-                <h:outputText value="#{currentMovieDetailsController.editId}"/>
+                <h:outputText id="editId" value="#{currentMovieDetailsController.editId}"/>
 
                 <h:panelGroup>
                     <strong><h:outputText value="Title"/></strong>
                 </h:panelGroup>
-                <h:outputText value="#{currentMovieDetailsController.existingMovie.title}"/>
+                <h:outputText id="title" value="#{currentMovieDetailsController.existingMovie.title}"/>
 
                 <h:panelGroup>
                     <strong><h:outputText value="Price"/></strong>
                 </h:panelGroup>
-                <h:outputText value="#{currentMovieDetailsController.existingMovie.price}"/>
+                <h:outputText id="price" value="#{currentMovieDetailsController.existingMovie.price}"/>
 
                 <h:panelGroup>
                     <strong><h:outputText value="Release Date"/></strong>
                 </h:panelGroup>
-                <h:outputText value="#{currentMovieDetailsController.existingMovie.releaseDate}"/>
+                <h:outputText id="releaseDate" value="#{currentMovieDetailsController.existingMovie.releaseDate}"/>
 
                 <h:panelGroup>
                     <strong><h:outputText value="Rating"/></strong>
                 </h:panelGroup>
-                <h:outputText value="#{currentMovieDetailsController.existingMovie.rating}"/>
+                <h:outputText id="rating" value="#{currentMovieDetailsController.existingMovie.rating}"/>
 
                 <h:panelGroup>
                     <strong><h:outputText value="Genre"/></strong>
                 </h:panelGroup>
-                <h:outputText value="#{currentMovieDetailsController.existingMovie.genre}"/>
+                <h:outputText id="genre" value="#{currentMovieDetailsController.existingMovie.genre}"/>
             </p:panelGrid>
 
         </p:panel>

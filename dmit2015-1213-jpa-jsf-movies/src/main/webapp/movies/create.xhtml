@@ -21,7 +21,7 @@
 
         <p:messages id="messages"/>
 
-        <h:form>
+        <h:form prependId="false">
             <p:focus context="panel"/>
 
             <p:panel id="panel" header="Movie Details">
@@ -74,6 +74,7 @@
                     </div>
 
                     <p:commandButton
+                            id="createButton"
                             value="Create"
                             icon="pi pi-save"
                             style="width: 150px"

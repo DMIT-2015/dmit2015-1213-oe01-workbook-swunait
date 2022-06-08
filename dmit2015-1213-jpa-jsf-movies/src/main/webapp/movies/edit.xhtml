@@ -21,7 +21,7 @@
 
         <p:messages id="messages"/>
 
-        <h:form>
+        <h:form prependId="false">
 
             <p:panel header="Movie Details">
                 <div class="ui-fluid">
@@ -83,7 +83,9 @@
                 </div>
             </p:panel>
 
-            <p:commandButton value="Save"
+            <p:commandButton
+                    id="updateButton"
+                    value="Save"
                              icon="pi pi-save"
                              action="#{currentMovieEditController.onUpdate()}"
                              update=":messages @form"/>

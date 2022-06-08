@@ -21,7 +21,7 @@
 
         <p:messages id="messages"/>
 
-        <h:form>
+        <h:form prependId="false">
 
             <p:commandButton value="Create New"
                              action="create"
@@ -37,14 +37,12 @@
                     <h:outputText value="#{currentItem.title}"/>
                 </p:column>
 
-                <p:column headerText="Rating">
-                    <h:outputText value="#{currentItem.rating}"/>
+                <p:column headerText="Genre">
+                    <h:outputText value="#{currentItem.genre}"/>
                 </p:column>
 
-                <p:column headerText="Release Date">
-                    <h:outputText value="#{currentItem.releaseDate}">
-                        <f:convertDateTime type="localDate" pattern="MMM dd, yyyy" />
-                    </h:outputText>
+                <p:column headerText="Rating">
+                    <h:outputText value="#{currentItem.rating}"/>
                 </p:column>
 
                 <p:column headerText="Price">
@@ -53,6 +51,11 @@
                     </h:outputText>
                 </p:column>
 
+                <p:column headerText="Release Date">
+                    <h:outputText value="#{currentItem.releaseDate}">
+                        <f:convertDateTime type="localDate" pattern="MMM dd, yyyy" />
+                    </h:outputText>
+                </p:column>
 
                 <p:column headerText="Action">
                     <p:link id="editLink" outcome="edit" value="edit">

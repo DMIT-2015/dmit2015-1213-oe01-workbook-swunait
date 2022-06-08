@@ -23,29 +23,29 @@
 
         <h3>Are you sure you want to delete this?</h3>
 
-        <h:form>
+        <h:form prependId="false">
 
             <p:panel title="Movie Details">
                 <p:panelGrid columns="2">
                     <h:panelGroup>
                         <strong><h:outputText value="ID"/></strong>
                     </h:panelGroup>
-                    <h:outputText value="#{currentMovieDeleteController.editId}"/>
+                    <h:outputText id="editId" value="#{currentMovieDeleteController.editId}"/>
 
                     <h:panelGroup>
                         <strong><h:outputText value="Title"/></strong>
                     </h:panelGroup>
-                    <h:outputText value="#{currentMovieDeleteController.existingMovie.title}"/>
+                    <h:outputText id="title" value="#{currentMovieDeleteController.existingMovie.title}"/>
 
                     <h:panelGroup>
                         <strong><h:outputText value="Genre"/></strong>
                     </h:panelGroup>
-                    <h:outputText value="#{currentMovieDeleteController.existingMovie.genre}"/>
+                    <h:outputText id="genre" value="#{currentMovieDeleteController.existingMovie.genre}"/>
 
                     <h:panelGroup>
                         <strong><h:outputText value="Release"/></strong>
                     </h:panelGroup>
-                    <h:outputText value="#{currentMovieDeleteController.existingMovie.releaseDate}"/>
+                    <h:outputText id="releaseDate" value="#{currentMovieDeleteController.existingMovie.releaseDate}"/>
 
 
                 </p:panelGrid>
@@ -54,6 +54,7 @@
 
 
             <p:commandButton
+                    id="deleteButton"
                     value="Delete"
                     icon="pi pi-trash"
                     immediate="true"
