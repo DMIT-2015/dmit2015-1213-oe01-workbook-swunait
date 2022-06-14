@@ -7,10 +7,10 @@ import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 @Transactional
-public class ProductRepository extends AbstractJpaRepository<Product,Integer> {
+public class ProductRepository extends AbstractJpaRepository<Product, Integer> {
 
-     public ProductRepository() {
+    public ProductRepository() {
         super(Product.class);
-     }
+    }
 
 }

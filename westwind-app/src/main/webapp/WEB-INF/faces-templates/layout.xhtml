@@ -43,13 +43,15 @@
             <p:menubar>
                 <p:menuitem value="Home" icon="pi pi-fw pi-home" url="#{request.contextPath}/index.xhtml"/>
 
+                <p:submenu label="Categories" icon="pi pi-fw pi-file">
+                    <p:menuitem value="List" icon="pi pi-fw pi-list"
+                                url="#{request.contextPath}/categories/index.xhtml"/>
+                    <p:menuitem value="Create" icon="pi pi-fw pi-plus"
+                                url="#{request.contextPath}/categories/create.xhtml"/>
+                </p:submenu>
+
                 <f:verbatim>
-                    <p:submenu label="Students" icon="pi pi-fw pi-file">
-                        <p:menuitem value="List" icon="pi pi-fw pi-list"
-                                    url="#{request.contextPath}/students/index.xhtml"/>
-                        <p:menuitem value="Create" icon="pi pi-fw pi-plus"
-                                    url="#{request.contextPath}/students/create.xhtml"/>
-                    </p:submenu>
+
 
                     <p:submenu label="Courses" icon="pi pi-fw pi-file">
                         <p:menuitem value="List" icon="pi pi-fw pi-list"

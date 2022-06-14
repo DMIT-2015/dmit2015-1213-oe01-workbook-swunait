@@ -2,10 +2,11 @@ package dmit2015.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-public class Products {
+public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ProductID", nullable = false)
@@ -17,7 +18,7 @@ public class Products {
     @Column(name = "SupplierID", nullable = false)
     private Integer supplierId;
     @Basic
-    @Column(name = "CategoryID", nullable = false)
+    @Column(name = "CategoryID", nullable = false, insertable = false, updatable = false)
     private Integer categoryId;
     @Basic
     @Column(name = "QuantityPerUnit", nullable = false, length = 20)
@@ -35,10 +36,10 @@ public class Products {
     @Column(name = "Discontinued", nullable = false)
     private Boolean discontinued;
     @ManyToOne
-    @JoinColumn(name = "SupplierID", referencedColumnName = "SupplierID", nullable = false)
+    @JoinColumn(name = "SupplierID", referencedColumnName = "SupplierID", nullable = false, insertable = false, updatable = false)
     private Supplier supplier;
     @ManyToOne
-    @JoinColumn(name = "CategoryID", referencedColumnName = "CategoryID", nullable = false)
+    @JoinColumn(name = "CategoryID", referencedColumnName = "CategoryID", nullable = false, insertable = false, updatable = false)
     private Category category;
 
     public Integer getProductId() {
@@ -118,7 +119,7 @@ public class Products {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Products products = (Products) o;
+        Product products = (Product) o;
 
         if (productId != null ? !productId.equals(products.productId) : products.productId != null) return false;
         if (productName != null ? !productName.equals(products.productName) : products.productName != null)

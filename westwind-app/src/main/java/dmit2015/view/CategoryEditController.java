@@ -27,7 +27,8 @@ public class CategoryEditController implements Serializable {
     @Inject
     private CategoryRepository _categoryRepository;
 
-    @Inject @ManagedProperty("#{param.editId}")
+    @Inject
+    @ManagedProperty("#{param.editId}")
     @Getter
     @Setter
     private Integer editId;
@@ -46,7 +47,7 @@ public class CategoryEditController implements Serializable {
                     Faces.redirect(Faces.getRequestURI().substring(0, Faces.getRequestURI().lastIndexOf("/")) + "/index.xhtml");
                 }
             } else {
-                Faces.redirect(Faces.getRequestURI().substring(0, Faces.getRequestURI().lastIndexOf("/") ) + "/index.xhtml");
+                Faces.redirect(Faces.getRequestURI().substring(0, Faces.getRequestURI().lastIndexOf("/")) + "/index.xhtml");
             }
         }
     }

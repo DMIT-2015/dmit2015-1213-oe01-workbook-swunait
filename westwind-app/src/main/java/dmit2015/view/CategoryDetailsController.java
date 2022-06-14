@@ -26,7 +26,8 @@ public class CategoryDetailsController implements Serializable {
     @Inject
     private CategoryRepository _categoryRepository;
 
-    @Inject @ManagedProperty("#{param.editId}")
+    @Inject
+    @ManagedProperty("#{param.editId}")
     @Getter
     @Setter
     private Integer editId;

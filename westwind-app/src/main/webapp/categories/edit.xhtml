@@ -1,16 +1,16 @@
 <ui:composition
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-    xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
-    xmlns:jsf="http://xmlns.jcp.org/jsf"
-    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-    xmlns:o="http://omnifaces.org/ui"
-    xmlns:of="http://omnifaces.org/functions"
-    xmlns:p="http://primefaces.org/ui"
-    template="/WEB-INF/faces-templates/layout.xhtml"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
 >
 
     <ui:param name="title" value="Category - Edit"/>
@@ -25,22 +25,31 @@
 
             <p:panel header="Category Details">
                 <div class="ui-fluid">
-                     <div class="field">
+                    <div class="field">
                         <label for="entityId">ID</label>
                         <p:inputText id="entityId"
-                                    label="Category ID"
-                                    value="#{currentCategoryEditController.editId}"
-                                    readonly="true">
+                                     label="Category ID"
+                                     value="#{currentCategoryEditController.editId}"
+                                     readonly="true">
                         </p:inputText>
                     </div>
 
                     <!-- TODO: add input fields for the properties of the entity -->
                     <div class="field">
-                        <label for="property2">Property2</label>
+                        <label for="categoryName">Category Name</label>
                         <p:inputText
-                                id="property2"
+                                id="categoryName"
                                 type="text"
-                                value="#{currentCategoryEditController.existingCategory.property2Name}">
+                                value="#{currentCategoryEditController.existingCategory.categoryName}">
+                        </p:inputText>
+                    </div>
+
+                    <div class="field">
+                        <label for="description">Description</label>
+                        <p:inputText
+                                id="description"
+                                type="text"
+                                value="#{currentCategoryEditController.existingCategory.description}">
                         </p:inputText>
                     </div>
 
@@ -48,19 +57,19 @@
                 </div>
 
                 <p:commandButton
-                    id="updateButton"
-                    value="Save"
-                    icon="pi pi-save"
-                    action="#{currentCategoryEditController.onUpdate()}"
-                    update=":messages @form"/>
+                        id="updateButton"
+                        value="Save"
+                        icon="pi pi-save"
+                        action="#{currentCategoryEditController.onUpdate()}"
+                        update=":messages @form"/>
 
 
             </p:panel>
 
-           <p>
+            <p>
                 <p:link id="backToListLink" outcome="index" value="Back to List">
                 </p:link>
-           </p>
+            </p>
 
         </h:form>
 

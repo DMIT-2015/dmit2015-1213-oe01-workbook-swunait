@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="remote-mssql-dmit2015-jpa-pu" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:app/datasources/RemoteMssqlDMIT2015DS</jta-data-source>
+        <class>dmit2015.entity.Category</class>
+        <class>dmit2015.entity.Product</class>
+        <class>dmit2015.entity.Supplier</class>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <property name="hibernate.connection.url"
+                      value="jdbc:sqlserver://DMIT-Capstone1.ad.sast.ca;database=DMIT2015_1213_E01_swu2015;TrustServerCertificate=true;"/>
+            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.connection.username" value="swu2015"/>
+            <property name="hibernate.connection.password" value="RemotePassword200012345"/>
+
+        </properties>
+    </persistence-unit>
+
+</persistence>

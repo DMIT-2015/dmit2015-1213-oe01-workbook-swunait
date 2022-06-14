@@ -23,27 +23,20 @@ import java.util.stream.IntStream;
  * <p>
  * The following example creates JPA a repository for the Region entity in the Oracle HR schema:
  *
-@jakarta.enterprise.context.ApplicationScoped
-@jakarta.transaction.Transactional
-public class RegionRepository extends AbstractJpaRepository<Region,Long> {
-    public RegionRepository() {
-        super(Region.class);
-    }
-}
- * The following example creates JPA a repository for the Country entity in the Oracle HR schema:
- *
-@jakarta.enterprise.context.ApplicationScoped
-@jakarta.transaction.Transactional
-public class CountryRepository extends AbstractJpaRepository<Country,String> {
-    public CountryRepository() {
-        super(Country.class);
-    }
-}
-
- *
- *
  * @version 2022.02.06
- *
+ * @jakarta.enterprise.context.ApplicationScoped
+ * @jakarta.transaction.Transactional public class RegionRepository extends AbstractJpaRepository<Region,Long> {
+ * public RegionRepository() {
+ * super(Region.class);
+ * }
+ * }
+ * The following example creates JPA a repository for the Country entity in the Oracle HR schema:
+ * @jakarta.enterprise.context.ApplicationScoped
+ * @jakarta.transaction.Transactional public class CountryRepository extends AbstractJpaRepository<Country,String> {
+ * public CountryRepository() {
+ * super(Country.class);
+ * }
+ * }
  */
 
 public abstract class AbstractJpaRepository<E extends Serializable, ID> implements Serializable {
@@ -139,8 +132,9 @@ public abstract class AbstractJpaRepository<E extends Serializable, ID> implemen
 
     /**
      * Return a list of entity instances for the given pageNumber and pageSize
+     *
      * @param pageNumber the starting position of the first result
-     * @param pageSize the maximum of results to return
+     * @param pageSize   the maximum of results to return
      * @return a list of entity instance
      */
     public List<E> findAll(int pageNumber, int pageSize) {

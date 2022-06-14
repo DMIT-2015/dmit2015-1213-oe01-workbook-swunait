@@ -101,6 +101,7 @@ public class MovieRepositoryIT {
         assertTrue(optionalMovie.isPresent());
         Movie existingMovie = optionalMovie.get();
         assertNotNull(existingMovie);
+        assertEquals("Ghostbusters 2", existingMovie.getTitle());
         assertEquals("Comedy", existingMovie.getGenre());
         assertEquals(9.99, existingMovie.getPrice().doubleValue());
         assertEquals("PG", existingMovie.getRating());

@@ -1,3 +1,5 @@
+package dmit2015.view;
+
 import dmit2015.entity.Category;
 import dmit2015.repository.CategoryRepository;
 
@@ -25,7 +27,8 @@ public class CategoryDeleteController implements Serializable {
     @Inject
     private CategoryRepository _categoryRepository;
 
-    @Inject @ManagedProperty("#{param.editId}")
+    @Inject
+    @ManagedProperty("#{param.editId}")
     @Getter
     @Setter
     private Integer editId;

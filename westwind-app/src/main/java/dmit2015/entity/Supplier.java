@@ -2,11 +2,12 @@ package dmit2015.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @Table(name = "Suppliers", schema = "WestWind", catalog = "DMIT2015_1213_E01_swu2015")
-public class Supplier {
+public class Supplier implements Serializable  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "SupplierID", nullable = false)
@@ -33,7 +34,7 @@ public class Supplier {
     @Column(name = "Fax", nullable = true, length = 24)
     private String fax;
     @OneToMany(mappedBy = "supplier")
-    private Collection<Products> productsBySupplierId;
+    private Collection<Product> productsBySupplierId;
 
     public Integer getSupplierId() {
         return supplierId;
@@ -134,11 +135,11 @@ public class Supplier {
         return result;
     }
 
-    public Collection<Products> getProductsBySupplierId() {
+    public Collection<Product> getProductsBySupplierId() {
         return productsBySupplierId;
     }
 
-    public void setProductsBySupplierId(Collection<Products> productsBySupplierId) {
+    public void setProductsBySupplierId(Collection<Product> productsBySupplierId) {
         this.productsBySupplierId = productsBySupplierId;
     }
 }
