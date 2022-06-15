@@ -8,8 +8,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
-import westwind.entity.Category;
-import westwind.repository.CategoryRepository;
 
 import java.io.Serializable;
 import java.util.Map;
