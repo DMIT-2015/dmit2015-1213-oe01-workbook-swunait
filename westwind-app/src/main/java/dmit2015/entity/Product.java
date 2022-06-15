@@ -15,12 +15,12 @@ public class Product implements Serializable {
     @Basic
     @Column(name = "ProductName", nullable = false, length = 40)
     private String productName;
-//    @Basic
-//    @Column(name = "SupplierID", nullable = false)
-//    private Integer supplierId;
-//    @Basic
-//    @Column(name = "CategoryID", nullable = false, insertable = false, updatable = false)
-//    private Integer categoryId;
+    @Basic
+    @Column(name = "SupplierID", nullable = false, insertable = false, updatable = false)
+    private Integer supplierId;
+    @Basic
+    @Column(name = "CategoryID", nullable = false, insertable = false, updatable = false)
+    private Integer categoryId;
     @Basic
     @Column(name = "QuantityPerUnit", nullable = false, length = 20)
     private String quantityPerUnit;
@@ -59,21 +59,21 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-//    public Integer getSupplierId() {
-//        return supplierId;
-//    }
-//
-//    public void setSupplierId(Integer supplierId) {
-//        this.supplierId = supplierId;
-//    }
-//
-//    public Integer getCategoryId() {
-//        return categoryId;
-//    }
-//
-//    public void setCategoryId(Integer categoryId) {
-//        this.categoryId = categoryId;
-//    }
+    public Integer getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public String getQuantityPerUnit() {
         return quantityPerUnit;
@@ -125,8 +125,8 @@ public class Product implements Serializable {
         if (id != null ? !id.equals(products.id) : products.id != null) return false;
         if (productName != null ? !productName.equals(products.productName) : products.productName != null)
             return false;
-//        if (supplierId != null ? !supplierId.equals(products.supplierId) : products.supplierId != null) return false;
-//        if (categoryId != null ? !categoryId.equals(products.categoryId) : products.categoryId != null) return false;
+        if (supplierId != null ? !supplierId.equals(products.supplierId) : products.supplierId != null) return false;
+        if (categoryId != null ? !categoryId.equals(products.categoryId) : products.categoryId != null) return false;
         if (quantityPerUnit != null ? !quantityPerUnit.equals(products.quantityPerUnit) : products.quantityPerUnit != null)
             return false;
         if (minimumOrderQuantity != null ? !minimumOrderQuantity.equals(products.minimumOrderQuantity) : products.minimumOrderQuantity != null)
@@ -144,8 +144,8 @@ public class Product implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (productName != null ? productName.hashCode() : 0);
-//        result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
-//        result = 31 * result + (categoryId != null ? categoryId.hashCode() : 0);
+        result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
+        result = 31 * result + (categoryId != null ? categoryId.hashCode() : 0);
         result = 31 * result + (quantityPerUnit != null ? quantityPerUnit.hashCode() : 0);
         result = 31 * result + (minimumOrderQuantity != null ? minimumOrderQuantity.hashCode() : 0);
         result = 31 * result + (unitPrice != null ? unitPrice.hashCode() : 0);
