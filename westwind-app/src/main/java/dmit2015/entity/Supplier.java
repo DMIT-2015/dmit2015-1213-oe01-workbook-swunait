@@ -11,7 +11,7 @@ public class Supplier implements Serializable  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "SupplierID", nullable = false)
-    private Integer supplierId;
+    private Integer id;
     @Basic
     @Column(name = "CompanyName", nullable = false, length = 40)
     private String companyName;
@@ -36,12 +36,12 @@ public class Supplier implements Serializable  {
     @OneToMany(mappedBy = "supplier")
     private Collection<Product> productsBySupplierId;
 
-    public Integer getSupplierId() {
-        return supplierId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
+    public void setId(Integer supplierId) {
+        this.id = supplierId;
     }
 
     public String getCompanyName() {
@@ -107,7 +107,7 @@ public class Supplier implements Serializable  {
 
         Supplier supplier = (Supplier) o;
 
-        if (supplierId != null ? !supplierId.equals(supplier.supplierId) : supplier.supplierId != null) return false;
+        if (id != null ? !id.equals(supplier.id) : supplier.id != null) return false;
         if (companyName != null ? !companyName.equals(supplier.companyName) : supplier.companyName != null)
             return false;
         if (contactName != null ? !contactName.equals(supplier.contactName) : supplier.contactName != null)
@@ -124,7 +124,7 @@ public class Supplier implements Serializable  {
 
     @Override
     public int hashCode() {
-        int result = supplierId != null ? supplierId.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
         result = 31 * result + (contactName != null ? contactName.hashCode() : 0);
         result = 31 * result + (contactTitle != null ? contactTitle.hashCode() : 0);

@@ -10,7 +10,7 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ProductID", nullable = false)
-    private Integer productId;
+    private Integer id;
     @Basic
     @Column(name = "ProductName", nullable = false, length = 40)
     private String productName;
@@ -42,12 +42,12 @@ public class Product implements Serializable {
     @JoinColumn(name = "CategoryID", referencedColumnName = "CategoryID", nullable = false, insertable = false, updatable = false)
     private Category category;
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setId(Integer productId) {
+        this.id = productId;
     }
 
     public String getProductName() {
@@ -121,7 +121,7 @@ public class Product implements Serializable {
 
         Product products = (Product) o;
 
-        if (productId != null ? !productId.equals(products.productId) : products.productId != null) return false;
+        if (id != null ? !id.equals(products.id) : products.id != null) return false;
         if (productName != null ? !productName.equals(products.productName) : products.productName != null)
             return false;
         if (supplierId != null ? !supplierId.equals(products.supplierId) : products.supplierId != null) return false;
@@ -141,7 +141,7 @@ public class Product implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = productId != null ? productId.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (productName != null ? productName.hashCode() : 0);
         result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
         result = 31 * result + (categoryId != null ? categoryId.hashCode() : 0);
