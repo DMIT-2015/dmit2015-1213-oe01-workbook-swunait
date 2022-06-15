@@ -1,0 +1,108 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Product - Create"/>
+
+    <ui:define name="maincontent">
+
+        <h1>Create Product</h1>
+
+        <p:messages id="messages"/>
+
+        <h:form prependId="false">
+            <p:focus context="panel"/>
+
+            <p:panel id="panel" header="Product Details">
+                <div class="ui-fluid">
+                    <div class="field">
+                        <label for="productName">Product Name</label>
+                        <p:inputText
+                                id="productName"
+                                type="text"
+                                value="#{currentProductCreateController.newProduct.productName}">
+                        </p:inputText>
+                    </div>
+
+                    <div class="field">
+                        <label for="unitPrice">Unit Price</label>
+                        <p:inputText
+                                id="unitPrice"
+                                type="text"
+                                value="#{currentProductCreateController.newProduct.unitPrice}">
+                        </p:inputText>
+                    </div>
+
+                    <div class="field">
+                        <label for="selectedCategoryId">Category ID</label>
+                        <p:selectOneMenu
+                                id="selectedCategoryId"
+                                value="#{currentCategorySelectOneMenu.selectedCategoryId}">
+                            <f:selectItem itemLabel="-- select Category --" itemValue="#{null}" />
+                            <f:selectItems value="#{currentCategorySelectOneMenu.categorySelectItemMap}" />
+                        </p:selectOneMenu>
+                    </div>
+
+                    <div class="field">
+                        <label for="selectedSupplierId">Supplier ID</label>
+                        <p:selectOneMenu
+                                id="selectedSupplierId"
+                                value="#{currentSupplierSelectOneMenu.selectedSupplierId}">
+                            <f:selectItem itemLabel="-- select Supplier --" itemValue="#{null}" />
+                            <f:selectItems value="#{currentSupplierSelectOneMenu.supplierSelectItemMap}" />
+                        </p:selectOneMenu>
+                    </div>
+
+                    <div class="field">
+                        <label for="quantityPerUnit">Quantity Per Unit</label>
+                        <p:inputText
+                                id="quantityPerUnit"
+                                type="text"
+                                value="#{currentProductCreateController.newProduct.quantityPerUnit}">
+                        </p:inputText>
+                    </div>
+
+
+                    <div class="field">
+                        <label for="unitsOnOrder">Units On Order</label>
+                        <p:inputText
+                                id="unitsOnOrder"
+                                type="text"
+                                value="#{currentProductCreateController.newProduct.unitsOnOrder}">
+                        </p:inputText>
+                    </div>
+
+
+                </div>
+
+                <p:commandButton
+                        id="createButton"
+                        value="Create"
+                        icon="pi pi-save"
+                        action="#{currentProductCreateController.onCreateNew()}"
+                        update=":messages @form"
+                />
+
+            </p:panel>
+
+            <p>
+                <p:link id="backToListLink" outcome="index" value="Back to List">
+                </p:link>
+            </p>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

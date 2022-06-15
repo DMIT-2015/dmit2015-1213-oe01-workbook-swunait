@@ -1,0 +1,77 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Product - List"/>
+
+    <ui:define name="maincontent">
+
+        <h1>Product List</h1>
+
+        <p:messages id="messages"/>
+
+        <h:form prependId="false">
+
+            <p:commandButton value="Create New"
+                             action="create"
+                             icon="pi pi-database"
+            >
+            </p:commandButton>
+
+            <p:dataTable id="entityTable"
+                         paginator="true"
+                         rows="5"
+                         value="#{currentProductListController.productList}"
+                         var="currentItem">
+
+                <p:column headerText="Product Name">
+                    <h:outputText value="#{currentItem.productName}"/>
+                </p:column>
+
+                <p:column headerText="Unit Price">
+                    <h:outputText value="#{currentItem.unitPrice}">
+                        <f:convertNumber type="currency" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Category Name">
+                    <h:outputText value="#{currentItem.category.categoryName}">
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Action">
+                    <p:link id="editLink" outcome="edit" value="edit">
+                        <f:param name="editId" value="#{currentItem.id}"/>
+                    </p:link>
+
+                    |
+
+                    <p:link id="detailsLink" outcome="details" value="details">
+                        <f:param name="editId" value="#{currentItem.id}"/>
+                    </p:link>
+
+                    |
+
+                    <p:link id="deleteLink" outcome="delete" value="delete">
+                        <f:param name="editId" value="#{currentItem.id}"/>
+                    </p:link>
+                </p:column>
+
+            </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

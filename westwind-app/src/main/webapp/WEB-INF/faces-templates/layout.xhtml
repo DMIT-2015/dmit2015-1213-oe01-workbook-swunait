@@ -50,15 +50,18 @@
                                 url="#{request.contextPath}/categories/create.xhtml"/>
                 </p:submenu>
 
+
+                <p:submenu label="Products" icon="pi pi-fw pi-file">
+                    <p:menuitem value="List" icon="pi pi-fw pi-list"
+                                url="#{request.contextPath}/products/index.xhtml"/>
+                    <p:menuitem value="Create" icon="pi pi-fw pi-plus"
+                                url="#{request.contextPath}/products/create.xhtml"/>
+                </p:submenu>
+
+
                 <f:verbatim>
 
 
-                    <p:submenu label="Courses" icon="pi pi-fw pi-file">
-                        <p:menuitem value="List" icon="pi pi-fw pi-list"
-                                    url="#{request.contextPath}/courses/index.xhtml"/>
-                        <p:menuitem value="Create" icon="pi pi-fw pi-plus"
-                                    url="#{request.contextPath}/courses/create.xhtml"/>
-                    </p:submenu>
 
                     <p:submenu label="Instructors" icon="pi pi-fw pi-file">
                         <p:menuitem value="List" icon="pi pi-fw pi-list"
