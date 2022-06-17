@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dmit2015-todo-mprestclient-firebase:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>dmit2015-todo-mprestclient-firebase</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="dmit2015-todo-mprestclient-firebase-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="dmit2015-todo-mprestclient-firebase:war exploded" />
+    </root>
+  </artifact>
+</component>

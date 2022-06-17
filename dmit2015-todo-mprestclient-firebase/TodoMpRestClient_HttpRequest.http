@@ -1,0 +1,54 @@
+
+### Create a new document
+POST https://dmit2015-1213-demo-default-rtdb.firebaseio.com/Todo.json
+Content-Type: application/json
+
+{
+  "task": "Task 1"
+}
+
+### Create a new document
+POST https://dmit2015-1213-demo-default-rtdb.firebaseio.com/Todo.json
+Content-Type: application/json
+
+{
+  "task": "Task 2",
+  "important": true
+}
+
+### Create a new document
+POST https://dmit2015-1213-demo-default-rtdb.firebaseio.com/Todo.json
+Content-Type: application/json
+
+{
+  "task": "Task 3",
+  "important": true,
+  "completed": true
+}
+
+### GET All documents
+GET https://dmit2015-1213-demo-default-rtdb.firebaseio.com/Todo.json
+
+### GET One document by key
+GET https://dmit2015-1213-demo-default-rtdb.firebaseio.com/Todo/-N4jXzoQ4SPm7CkSmKxq.json
+
+### UPDATE document - will replace all properties with the properties in the request body - if you miss a property it will be removed
+PUT https://dmit2015-1213-demo-default-rtdb.firebaseio.com/Todo/-N4jYJEQ_yb9CNBJbeG8.json
+Content-Type: application/json
+
+{
+  "task": "Break until 9:05",
+  "completed": true
+}
+
+### DELETE document - use this if you want to delete a document
+DELETE https://dmit2015-1213-demo-default-rtdb.firebaseio.com/Todo/-N4jYJEQ_yb9CNBJbeG8.json
+
+
+### PATCH document - use this if you want to update some of the properties but not all of them
+PATCH https://dmit2015-1213-demo-default-rtdb.firebaseio.com/Todo/-N4jZv-Ei6543uktSJ1u.json
+Content-Type: application/json
+
+{
+  "task": "Task 2 PATCH"
+}
