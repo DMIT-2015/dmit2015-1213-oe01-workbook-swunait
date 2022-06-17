@@ -23,11 +23,28 @@
 
         <h:form prependId="false">
 
-            <p:commandButton value="Create New"
-                             action="create"
-                             icon="pi pi-database"
-            >
-            </p:commandButton>
+            <div class="formgroup-inline grid">
+                <div class="field col-fixed" style="width: 250px">
+                    <label for="searchValue">Product Name</label>
+                    <p:inputText id="searchValue"
+                                 value="#{currentProductListController.productNameSearchValue}"
+                                 placeholder="enter product name">
+
+                    </p:inputText>
+                </div>
+                <div class="field">
+                    <p:commandButton value="Search"
+                                     actionListener="#{currentProductListController.doSearchByProductName()}"
+                                     icon="pi pi-search"
+                                     ajax="false"
+                                     update=":messages entityTable"
+                    >
+                    </p:commandButton>
+                </div>
+
+            </div>
+
+
 
             <p:dataTable id="entityTable"
                          paginator="true"
