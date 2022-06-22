@@ -1,0 +1,73 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Product - Find By Category"/>
+
+    <ui:define name="maincontent">
+        <h1>Find by Category</h1>
+
+        <p:messages id="messages" />
+
+        <h:form prependId="false">
+            <div class="field">
+                <label for="selectedCategoryId">Category ID</label>
+                <p:selectOneMenu
+                        id="selectedCategoryId"
+                        value="#{currentCategorySelectOneMenu.selectedCategoryId}">
+                    <f:selectItem itemLabel="-- select Category --" itemValue="#{null}" />
+                    <f:selectItems value="#{currentCategorySelectOneMenu.categorySelectItemMap}" />
+                </p:selectOneMenu>
+            </div>
+            <p:commandButton id="searchButton"
+                             value="Search"
+                             action="#{currentProductsByCategoryController.onSearchByCategory()}"
+                             ajax="true"
+                             update=":messages ajaxOutputPanel"
+            />
+            <p:commandButton id="clearButton"
+                             value="Clear"
+                             action="#{currentProductsByCategoryController.onClear()}"
+                             ajax="true"
+                             update=":messages ajaxOutputPanel selectedCategoryId"
+            />
+
+            <p:outputPanel id="ajaxOutputPanel">
+                <p:dataTable id="queryResultTable"
+                             value="#{currentProductsByCategoryController.queryResultList}"
+                             var="currentItem"
+                             rendered="#{not empty currentProductsByCategoryController.queryResultList}"
+                >
+                    <p:column headerText="Product Name">
+                        <h:outputText value="#{currentItem.productName}" />
+                    </p:column>
+
+                    <p:column headerText="Unit Price">
+                        <h:outputText value="#{currentItem.unitPrice}" />
+                    </p:column>
+
+                    <p:column headerText="Category Name">
+                        <h:outputText value="#{currentItem.category.categoryName}" />
+                    </p:column>
+
+                </p:dataTable>
+            </p:outputPanel>
+
+
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>
