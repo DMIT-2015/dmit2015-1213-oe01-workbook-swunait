@@ -1,0 +1,2 @@
+### Get the curent temperature in Edmonton
+GET https://api.openweathermap.org/data/2.5/weather?q=Edmonton&units=metric&appid=4a5e4f3b31f9c3023dad2a30218ca87a

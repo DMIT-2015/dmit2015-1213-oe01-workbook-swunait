@@ -1,0 +1,42 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Home"/>
+
+    <ui:define name="maincontent">
+
+        <h2>OpenWeatherMap API</h2>
+
+        <p:messages id="messages" />
+
+        <h:form prependId="false">
+            <div class="formgroup-inline">
+                <div class="field">
+
+                    <label for="city">City </label>
+                    <p:inputText id="city"
+                                 value="#{currentOpenWeatherApiClientController.city}"/>
+                    <p:commandButton id="submit"
+                                     value="Get Weather"
+                                     actionListener="#{currentOpenWeatherApiClientController.doSearchByCity()}"
+                                     ajax="false" />
+                </div>
+            </div>
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>

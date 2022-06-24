@@ -25,7 +25,8 @@ import java.util.LinkedHashMap;
  * To use the client interface from an environment does support CDI, add @Inject and @RestClient before the field declaration such as:
  *
  * @Inject
- * @RestClient private TodoMpRestClient _todoMpRestClient;
+ * @RestClient
+ * private TodoMpRestClient _todoMpRestClient;
  * <p>
  * To use the client interface from an environment that does not support CDI, you can use the RestClientBuilder class to programmatically build an instance as follows:
  * <p>

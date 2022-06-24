@@ -1,0 +1,77 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Default Title"/>
+
+    <ui:define name="maincontent">
+
+        <h1>Todo List</h1>
+
+        <p:messages id="messages"/>
+
+        <h:form prependId="false">
+
+            <p:commandButton value="Create New"
+                             action="create"
+                             icon="pi pi-database"
+                             ajax="false"
+            >
+            </p:commandButton>
+
+            <p:dataTable id="entityTable"
+                         value="#{currentTodoListController.todoMap.entrySet()}"
+                         var="currentItem">
+
+                <p:column headerText="Task">
+                    <h:outputText value="#{currentItem.value.task}"/>
+                </p:column>
+
+                <p:column headerText="Completed">
+                    <p:selectBooleanCheckbox value="#{currentItem.value.completed}" disabled="true"/>
+                </p:column>
+
+                <p:column headerText="Important">
+                    <p:selectBooleanCheckbox value="#{currentItem.value.important}" disabled="true"/>
+                </p:column>
+
+                <p:column headerText="Action">
+<f:verbatim>
+
+
+                    <p:link id="editLink" outcome="edit" value="edit">
+                        <f:param name="editId" value="#{currentItem.key}"/>
+                    </p:link>
+
+                    |
+
+                    <p:link id="detailsLink" outcome="details" value="details">
+                        <f:param name="editId" value="#{currentItem.key}"/>
+                    </p:link>
+
+                    |
+
+                    <p:link id="deleteLink" outcome="delete" value="delete">
+                        <f:param name="editId" value="#{currentItem.key}"/>
+                    </p:link>
+</f:verbatim>
+                </p:column>
+
+            </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
