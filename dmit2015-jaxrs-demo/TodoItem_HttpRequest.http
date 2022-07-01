@@ -1,0 +1,37 @@
+### GET All Todo
+GET http://localhost:8080/restapi/TodoItems
+
+### GET Todo with id of 2
+GET http://localhost:8080/restapi/TodoItems/2
+
+### CREATE new TodoItem
+POST http://localhost:8080/restapi/TodoItems
+Content-Type: application/json
+
+{
+  "name": "Finish DMIT2015 Assignment 1",
+  "complete": false
+}
+
+### Update TodoItem with id of 4
+PUT http://localhost:8080/restapi/TodoItems/4
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name": "Demo DMIT2015 Assignment 1",
+  "complete": true,
+  "version": 0
+}
+
+### DELETE TodoItem with an id of 4
+DELETE http://localhost:8080/restapi/TodoItems/4
+
+
+
+
+
+
+
+
+
