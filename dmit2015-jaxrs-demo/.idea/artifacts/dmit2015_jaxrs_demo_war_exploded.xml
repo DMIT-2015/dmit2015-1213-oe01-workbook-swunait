@@ -33,6 +33,7 @@
           <element id="library" level="project" name="Maven: com.sun.istack:istack-commons-runtime:4.0.0" />
           <element id="library" level="project" name="Maven: com.h2database:h2:2.1.214" />
           <element id="library" level="project" name="Maven: com.microsoft.sqlserver:mssql-jdbc:10.2.1.jre17" />
+          <element id="library" level="project" name="Maven: org.mapstruct:mapstruct:1.5.2.Final" />
         </element>
       </element>
       <element id="directory" name="META-INF">
