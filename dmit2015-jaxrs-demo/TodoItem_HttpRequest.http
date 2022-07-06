@@ -21,7 +21,7 @@ Content-Type: application/json
   "id": 4,
   "name": "Demo DMIT2015 Assignment 1",
   "complete": true,
-  "version": 0
+  "version": 1
 }
 
 ### DELETE TodoItem with an id of 4
