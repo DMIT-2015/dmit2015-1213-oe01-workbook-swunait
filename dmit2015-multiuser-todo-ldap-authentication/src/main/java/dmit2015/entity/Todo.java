@@ -31,5 +31,9 @@ public class Todo implements Serializable {
     private LocalDate dueDate;
     private LocalDateTime remindDateTime;
 
+    /** Step 1: Add property to associate the username with this entity */
+    @Column(length=32, nullable = false)
+    private String username;
+
 
 }

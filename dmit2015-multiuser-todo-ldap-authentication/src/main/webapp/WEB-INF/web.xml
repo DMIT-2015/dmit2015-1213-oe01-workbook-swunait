@@ -19,18 +19,51 @@
         </user-data-constraint>
     </security-constraint>
     
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>ShipperAccessOnlyResources</web-resource-name>
-            <url-pattern>/todos/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>Shipping</role-name>
-        </auth-constraint>
-    </security-constraint>
-    
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>ShipperAndSalesAndITAccessOnlyResources</web-resource-name>-->
+<!--            <url-pattern>/todos/index.xhtml</url-pattern>-->
+<!--            <url-pattern>/todos/details.xhtml</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>Shipping</role-name>-->
+<!--            <role-name>Sales</role-name>-->
+<!--            <role-name>IT</role-name>-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
+
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>ShipperAndSalesAccessOnlyResources</web-resource-name>-->
+<!--            <url-pattern>/todos/create.xhtml</url-pattern>-->
+<!--            <url-pattern>/todos/edit.xhtml</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>Shipping</role-name>-->
+<!--            <role-name>Sales</role-name>-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
+
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>ITAccessOnlyResources</web-resource-name>-->
+<!--            <url-pattern>/todos/delete.xhtml</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>IT</role-name>-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
+
     <security-role>
         <role-name>Shipping</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>Sales</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>IT</role-name>
     </security-role>
 
     <error-page>

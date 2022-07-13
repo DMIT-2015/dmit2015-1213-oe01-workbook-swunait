@@ -2,6 +2,7 @@ package dmit2015.resource;
 
 import common.config.ApplicationConfig;
 import common.config.JAXRSConfiguration;
+import common.jpa.AbstractJpaRepository;
 import dmit2015.entity.TodoItem;
 import dmit2015.repository.TodoItemRepository;
 import io.restassured.http.ContentType;
@@ -59,9 +60,10 @@ public class TodoItemResourceArquillianRestAssuredIT {
 //                .addAsLibraries(pomFile.resolve("org.hsqldb:hsqldb:2.6.1").withTransitivity().asFile())
 //                .addAsLibraries(pomFile.resolve("com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre17").withTransitivity().asFile())
 //                .addAsLibraries(pomFile.resolve("com.oracle.database.jdbc:ojdbc11:21.5.0.0").withTransitivity().asFile())
+                .addClasses(AbstractJpaRepository.class)
                 .addClasses(ApplicationConfig.class, JAXRSConfiguration.class)
                 .addClasses(TodoItem.class, TodoItemRepository.class, TodoItemResource.class)
-                .addPackage("common.jpa")
+//                .addPackage("common.jpa")
                 .addPackage("common.validator")
 //                .addPackage("dmit2015.repository")
 //                .addPackage("dmit2015.resource")
