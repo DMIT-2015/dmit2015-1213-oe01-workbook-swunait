@@ -2,6 +2,7 @@ package dmit2015.repository;
 
 import common.config.ApplicationConfig;
 
+import common.jpa.AbstractJpaRepository;
 import dmit2015.entity.TodoItem;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
@@ -40,6 +41,7 @@ class TodoItemRepositoryIT {
                 .addAsLibraries(pomFile.resolve("com.h2database:h2:2.1.214").withTransitivity().asFile())
 //                .addAsLibraries(pomFile.resolve("com.microsoft.sqlserver:mssql-jdbc:10.2.1.jre17").withTransitivity().asFile())
                 .addAsLibraries(pomFile.resolve("org.hamcrest:hamcrest:2.2").withTransitivity().asFile())
+                .addClasses(AbstractJpaRepository.class)
                 .addClass(ApplicationConfig.class)
                 .addClasses(TodoItem.class, TodoItemRepository.class)
                 .addAsResource("META-INF/persistence.xml")
@@ -116,7 +118,7 @@ class TodoItemRepositoryIT {
         assertTrue(optionalTodoItem.isPresent());
         TodoItem existingTodoItem = optionalTodoItem.get();
         assertNotNull(existingTodoItem);
-        _todoRepository.delete(existingTodoItem.getId());
+        _todoRepository.deleteById(existingTodoItem.getId());
         optionalTodoItem = _todoRepository.findOptionalById(todoId);
         assertTrue(optionalTodoItem.isEmpty());
     }
