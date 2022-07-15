@@ -6,7 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.annotation.FacesConfig;
 import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
-import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
+import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 
 @DataSourceDefinitions({
 
@@ -25,6 +25,7 @@ import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
 //		user="yourNaitUsername",  //  Replace yourNaitUsername with your NAIT username
 //		password="RemotePassword.200012345"),    // Replace 200012345 with your NAIT StudentID
 
+
 })
 
 @CustomFormAuthenticationMechanismDefinition(
@@ -35,15 +36,14 @@ import jakarta.security.enterprise.identitystore.LdapIdentityStoreDefinition;
         )
 )
 
-@LdapIdentityStoreDefinition(
-        url = "ldap://192.168.101.198:389",
-        callerSearchBase = "ou=Departments,dc=dmit2015,dc=ca",
-        callerNameAttribute = "SamAccountName", // SamAccountName or UserPrincipalName
-        groupSearchBase = "ou=Departments,dc=dmit2015,dc=ca",
-        bindDn = "cn=DAUSTIN,ou=IT,ou=Departments,dc=dmit2015,dc=ca",
-        bindDnPassword = "Password2015",
-        priority = 5
+
+@DatabaseIdentityStoreDefinition(
+        dataSourceLookup="java:app/datasources/h2databaseDS",
+        callerQuery="SELECT password FROM CallerUser WHERE username = ?",
+        groupsQuery="SELECT groupname FROM CallerGroup WHERE username = ? ",
+        priority = 10
 )
+
 
 @FacesConfig
 @ApplicationScoped
