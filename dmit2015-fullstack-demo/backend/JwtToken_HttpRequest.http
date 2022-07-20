@@ -1,0 +1,17 @@
+### GET a JWT for DLEE in Sales
+POST http://localhost:8080/restapi/jwt/ldapJsonLogin
+Content-Type: application/json
+
+{
+"username":"DLEE",
+"password":"Password2015"
+}
+
+### GET a JWT for BERNST from IT
+POST http://localhost:8080/restapi/jwt/ldapJsonLogin
+Content-Type: application/json
+
+{
+  "username":"BERNST",
+  "password":"Password2015"
+}
