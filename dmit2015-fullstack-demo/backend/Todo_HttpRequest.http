@@ -1,11 +1,11 @@
 ### GET All Todo
-GET http://localhost:8080/restapi/TodoDtos
+GET http://localhost:8080/backend/restapi/TodoDtos
 
 ### GET Todo with id of 2
-GET http://localhost:8080/restapi/TodoDtos/2
+GET http://localhost:8080/backend/restapi/TodoDtos/2
 
 ### CREATE new TodoItem
-POST http://localhost:8080/restapi/TodoDtos
+POST http://localhost:8080/backend/restapi/TodoDtos
 Content-Type: application/json
 Authorization: Bearer eyJraWQiOiJxdWlja3N0YXJ0LWp3dC1pc3N1ZXIiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJETEVFIiwidXBuIjoiRExFRSIsImlzcyI6InF1aWNrc3RhcnQtand0LWlzc3VlciIsImF1ZCI6Imp3dC1hdWRpZW5jZSIsImdyb3VwcyI6WyJTYWxlcyJdLCJqdGkiOiI0NGNkYzZhNi0yZTI2LTQ1YmMtODM5Ni00NzQ4OTA3YmJhYzEiLCJpYXQiOjE2NTgyODM2OTksImV4cCI6MTY1ODI5ODA5OX0.eK41h2uAu2TPG7x5Sww_l-eGfNiIt7KpGbdCKwX4IM9_VeH3w4fEWtZOf--3KHfA9vlH2wuR9BhvNqx9jM2Kb7dJ3ip5eQa4Q4M9zbHnSLqdI4GqyshUnFwwnRn76k12Cf24IpFnz4s3aIgdebBUeozA3o62IuuadbX5I9ZWg6Fi2HSWOrQbwkVfLHxef7stNcknioaRGBa7Q70Od7ICXQOwjLgwC0kg1nX8gIXGq26Z1cmGGAgNtF_1jnT7LCGL271KA_hbEctyvKLFpXKV64BErY0wrHnMKLtHASHn0JPp4DjdLH9b5_fh4AiAqFRKCsQ8yHK7h8lkWqffHf7isw
 
@@ -15,7 +15,7 @@ Authorization: Bearer eyJraWQiOiJxdWlja3N0YXJ0LWp3dC1pc3N1ZXIiLCJ0eXAiOiJqd3QiLC
 }
 
 ### Update TodoItem with id of 4
-PUT http://localhost:8080/restapi/TodoDtos/4
+PUT http://localhost:8080/backend/restapi/TodoDtos/4
 Content-Type: application/json
 
 {
@@ -26,7 +26,7 @@ Content-Type: application/json
 }
 
 ### DELETE TodoItem with an id of 4
-DELETE http://localhost:8080/restapi/TodoDtos/4
+DELETE http://localhost:8080/backend/restapi/TodoDtos/4
 Authorization: Bearer eyJraWQiOiJxdWlja3N0YXJ0LWp3dC1pc3N1ZXIiLCJ0eXAiOiJqd3QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJCRVJOU1QiLCJ1cG4iOiJCRVJOU1QiLCJpc3MiOiJxdWlja3N0YXJ0LWp3dC1pc3N1ZXIiLCJhdWQiOiJqd3QtYXVkaWVuY2UiLCJncm91cHMiOlsiSVQiXSwianRpIjoiNjUwYTBhODAtOTRiNi00YjdiLWJiMmEtZTA1MGRkNDczMTYwIiwiaWF0IjoxNjU4Mjg0MTAzLCJleHAiOjE2NTgyOTg1MDN9.G6mmEAnW2BjPI_bMbZI5SCscAC3vlWXmtDQ4aiKYOkaP2RpnUNKL-hdkrJ_UrA5x-s_I_X_nl1xhvzSwd-lDK8VfyvBL89Kr55PXRBDAWjtuhHP1Vc-vTfKq6aIBAmEt0k3FYgR0pff5efwyHnato2Ncie2b1KA5YYLZn_FfxPvNgutv_WRcATtoFnaZ7qzM5aiav2U27HhSIXOplmGjwJ_9oAEKRQE93B_ZSOqy8jU8ckl1pCb_Rewe2spNYaE7RbuPXMvEqhsb3cF23tnyHsjYbgd5msqoRBk1ivEAwmceQZHO4m3xCkBPHZPhBFbZQ4zVht5ilYPMDHlgyKSIzA
 
 
