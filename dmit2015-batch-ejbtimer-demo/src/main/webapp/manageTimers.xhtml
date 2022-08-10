@@ -1,0 +1,67 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Manager EJB Timers"/>
+
+    <ui:define name="maincontent">
+
+        <div class="card">
+            <h1>Manage Timers</h1>
+
+            <p:messages id="messages" />
+
+            <p:link outcome="/index" value="Home">
+            </p:link>
+
+            <h:form >
+                <p:commandButton
+                        value="Call All Timers"
+                        action="#{timerController.cancelAllTimers}"
+                        immediate="true"
+                        update="timersTable"
+                >
+                </p:commandButton>
+
+                <p:dataTable
+                        id="timersTable"
+                        value="#{timerController.list()}"
+                        var="currentTimer"
+                >
+
+                    <p:column headerText="Timer Info" >
+                        <h:outputText value="#{currentTimer.info}" />
+                    </p:column>
+
+                    <p:column headerText="Schedule" >
+                        <h:outputText value="#{currentTimer.schedule.toString()}" />
+                    </p:column>
+
+                    <p:column headerText="Action">
+                        <p:commandButton
+                                icon="pi pi-trash"
+                                value="Cancel"
+                                action="#{timerController.cancelTimer(currentTimer)}"
+                                ajax="false" />
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>
